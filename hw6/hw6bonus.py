@@ -19,7 +19,7 @@ def parse_request(c):
     data_split = data_str.split('\r\n', 1)
     header = data_split[0]
     body = data_split[1] if len(data_split) > 1 else ''
-    m = re.match("^((GET)|(PUT)|(DELETE)) /([a-zA-Z/_\.\-]+)$", header)
+    m = re.match("^((GET)|(PUT)|(DELETE)) /([0-9a-zA-Z/_\.\-]+)$", header)
     if m is not None:
         req = m.group(1)
         filepath = m.group(5)
