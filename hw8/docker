@@ -4,8 +4,8 @@ set -e
 
 sandbox=/home/box/task8.3
 paths=$(echo $PATH | sed 's/:/ /g')
-for path in "bin boot etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr var"
-	[ ! -d $sandbox/$path ] && cp /$path $sandbox/$path
+for path in bin lib lib64 media mnt opt run sbin srv tmp usr ; do
+	[ ! -d $sandbox/$path ] && cp -r /$path $sandbox/$path
 done
 for path in $paths ; do
 	[ ! -d $sandbox/$path ] && mkdir -p $sandbox/$(dirname $path)
@@ -13,4 +13,5 @@ for path in $paths ; do
 done
 
 sudo chroot $sandbox $@
+
 																				
